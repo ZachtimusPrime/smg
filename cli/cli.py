@@ -13,14 +13,11 @@ def main():
 
 @main.command()
 @click.option('--path', '-p', default=os.getcwd(), help="The filepath to the directory of lambdas to migrate.")
-def migrate(path):
+def migrate2aws(path):
     """Creates file structure necessary to deploy lambdas with serverless."""
-    project_name = input.split("/")[-1]
+    project_name = path.split("/")[-1]
 
     try:
       generator.generate_aws_framework(path, __template_dir__, project_name)
     except Exception as e:
       click.echo(e)
-
-if __name__ == "__main__":
-    main()
