@@ -1,0 +1,23 @@
+provider:
+  name: aws
+  profile: <AWS_ROLE>
+  stage: ${self:custom.stage}
+  # region resources get deployed to
+  region: us-east-1
+  # tags to apply to cloudformation template that gets created
+  stackTags:
+    PLATFORM: <PLATFORM>
+    BUSINESS_REGION: NORTHAMERICA
+    BUSINESS_UNIT: <BUSINESS_UNIT>
+    CLIENT: NONE
+  # default tags to apply to every defined lambda function
+  # (can be overridden in lambda config)
+  tags:
+    PLATFORM: <PLATFORM>
+    BUSINESS_REGION: NORTHAMERICA
+    BUSINESS_UNIT: <BUSINESS_UNIT>
+    CLIENT: NONE
+
+  # default iam policies to apply to every defined lambda function
+  # (can be overridden in lambda config)
+  iamRoleStatements:

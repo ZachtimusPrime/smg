@@ -1,0 +1,14 @@
+service: SERVICE_NAME
+
+package:
+  individually: true
+  exclude:
+    # exclude everything first
+    - '**/*'
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+
+provider: ${file(environments/${self:custom.stage}.yml):provider}
+
+functions:
