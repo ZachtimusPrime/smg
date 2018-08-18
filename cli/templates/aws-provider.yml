@@ -7,16 +7,16 @@ provider:
   # tags to apply to cloudformation template that gets created
   stackTags:
     PLATFORM: <PLATFORM>
-    BUSINESS_REGION: NORTHAMERICA
+    BUSINESS_REGION: <BUSINESS_REGION>
     BUSINESS_UNIT: <BUSINESS_UNIT>
-    CLIENT: NONE
+    CLIENT: <CLIENT>
   # default tags to apply to every defined lambda function
   # (can be overridden in lambda config)
   tags:
     PLATFORM: <PLATFORM>
-    BUSINESS_REGION: NORTHAMERICA
+    BUSINESS_REGION: <BUSINESS_REGION>
     BUSINESS_UNIT: <BUSINESS_UNIT>
-    CLIENT: NONE
+    CLIENT: <CLIENT>
 
   # default iam policies to apply to every defined lambda function
   # (can be overridden in lambda config)
