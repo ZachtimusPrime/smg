@@ -6,7 +6,11 @@ import json
 from pathlib import Path
 
 __TAB__ = "  " # yml indents are set at 2 spaces
+__GEN_DIR__= os.path.join(os.path.dirname(os.path.realpath(__file__)))
 
+req_gens = []
+req_gens.append(os.path.join(__GEN_DIR__, "pipreq.sh"))
+req_gens.append(os.path.join(__GEN_DIR__, "nodereq.sh"))
 
 def walklevel(some_dir, level=1):
   some_dir = some_dir.rstrip(os.path.sep)
@@ -33,6 +37,7 @@ def generate_aws_framework(project, template_dir, service_name):
 
   generate_sls_yml(project, sls_template, service_name, functions)
   generate_config_files(project, aws_provider_template, functions)
+  generate_requirements(project)
 
 
 def generate_sls_yml(project, template, service_name, functions):
@@ -157,3 +162,11 @@ def generate_config_files(project, template, functions):
 
       with open(config_path, 'w') as outfile:
         json.dump(config, outfile, indent=4)
+
+
+def generate_requirements(project):
+  for req_gen in req_gens:
+    process = subprocess.Popen(args=[str(req_gen), str(project), str(__GEN_DIR__)], stdout=subprocess.PIPE)
+    output, error = process.communicate()
+    if error is not None:
+      raise Exception(error)

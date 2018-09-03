@@ -5,3 +5,4 @@ copy
 subprocess
 json
 pathlib
+pipreqs==0.4.9
