@@ -140,9 +140,7 @@ def generate_config_files(project, template, functions):
       runtime = "nodejs6.10"
 
     filepath = "/".join([project, f['parent'], "environments"])
-    print(filepath)
     if not Path(filepath).is_dir():
-      print("creating dir: {}".format(filepath))
       bashCommand = "mkdir {}".format(filepath)
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
