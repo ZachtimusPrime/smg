@@ -19,5 +19,9 @@ for dir in ./*/ ; do
       echo "ERROR: Could not find node_modules/ directory in $dir."
     fi
   fi
+
+  if [ -d "node_modules" ]; then
+    rm -rf node_modules/
+  fi
   cd ..
 done

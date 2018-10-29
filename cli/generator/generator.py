@@ -36,8 +36,8 @@ def generate_aws_framework(project, template_dir, service_name):
   aws_provider_template = template_dir + "/aws-provider.yml"
 
   generate_sls_yml(project, sls_template, service_name, functions)
-  generate_config_files(project, aws_provider_template, functions)
   generate_requirements(project)
+  generate_config_files(project, aws_provider_template, functions)
 
 
 def generate_sls_yml(project, template, service_name, functions):
@@ -140,7 +140,9 @@ def generate_config_files(project, template, functions):
       runtime = "nodejs6.10"
 
     filepath = "/".join([project, f['parent'], "environments"])
+    print(filepath)
     if not Path(filepath).is_dir():
+      print("creating dir: {}".format(filepath))
       bashCommand = "mkdir {}".format(filepath)
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
@@ -161,7 +163,7 @@ def generate_config_files(project, template, functions):
       }
 
       with open(config_path, 'w') as outfile:
-        json.dump(config, outfile, indent=4)
+        json.dump(config, outfile, indent=2)
 
 
 def generate_requirements(project):
